@@ -25,6 +25,7 @@ public class kiosco extends javax.swing.JFrame {
     private ArrayList<Producto> bebidas;
     private ModeloTablaPedido tablaPedido;
     private VPopUp popUp;
+    private VPopUpPregunta popUpPregunta;
     private int selectedRow = 0;
     private int horaPedido = 0;
     private int minPedido = 0;
@@ -105,6 +106,7 @@ public class kiosco extends javax.swing.JFrame {
         platosHomeBtn = new javax.swing.JButton();
         bebidasHomeBtn = new javax.swing.JButton();
         ofertasHomeBtn = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JButton();
         agradecimientoPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -131,6 +133,8 @@ public class kiosco extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         primerosInfPanel4 = new javax.swing.JPanel();
         asapBtn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
         pedidosPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         mTablaPedidos = new javax.swing.JTable();
@@ -259,6 +263,7 @@ public class kiosco extends javax.swing.JFrame {
         Footer = new javax.swing.JPanel();
         textoFooterBtn = new javax.swing.JButton();
         totalPedidoBtn = new javax.swing.JButton();
+        textoFooterBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(250, 244, 238));
@@ -420,22 +425,34 @@ public class kiosco extends javax.swing.JFrame {
             }
         });
 
+        cancelarBtn.setBackground(new java.awt.Color(255, 51, 51));
+        cancelarBtn.setFont(new java.awt.Font("Dialog", 1, 26)); // NOI18N
+        cancelarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarBtn.setText("CANCELAR PEDIDO");
+        cancelarBtn.setMaximumSize(new java.awt.Dimension(100, 58));
+        cancelarBtn.setMinimumSize(new java.awt.Dimension(100, 58));
+        cancelarBtn.setPreferredSize(new java.awt.Dimension(100, 58));
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+            .addGroup(homePanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(ofertasHomeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(homePanelLayout.createSequentialGroup()
-                        .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(menuHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(platosHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(infMenuHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bebidasHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(menuHomeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(platosHomeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infMenuHomeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bebidasHomeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(41, 41, 41))
         );
         homePanelLayout.setVerticalGroup(
@@ -450,7 +467,9 @@ public class kiosco extends javax.swing.JFrame {
                     .addComponent(platosHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bebidasHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(ofertasHomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ofertasHomeBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
         );
 
@@ -549,7 +568,8 @@ public class kiosco extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         Body.add(agradecimientoPanel, "card3");
@@ -644,7 +664,7 @@ public class kiosco extends javax.swing.JFrame {
                 .addComponent(primerosInfPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(tarjetaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                 .addComponent(enCajaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(141, 141, 141))
         );
@@ -662,7 +682,7 @@ public class kiosco extends javax.swing.JFrame {
         reservarBtn.setBackground(new java.awt.Color(89, 64, 34));
         reservarBtn.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         reservarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        reservarBtn.setText("RESERVAR");
+        reservarBtn.setText("HORA DE RECOGIDA");
         reservarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reservarBtnActionPerformed(evt);
@@ -696,11 +716,11 @@ public class kiosco extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("12:00-16:00 Y 19:30-23:30");
+        jLabel6.setText("12:20-16:20 Y 19:50-23:50");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("HORARIOS DE COCINA:");
+        jLabel7.setText("HORARIOS DE RECOGIDA:");
 
         primerosInfPanel4.setBackground(new java.awt.Color(235, 250, 255));
         primerosInfPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -711,13 +731,25 @@ public class kiosco extends javax.swing.JFrame {
         asapBtn.setBackground(new java.awt.Color(89, 64, 34));
         asapBtn.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         asapBtn.setForeground(new java.awt.Color(255, 255, 255));
-        asapBtn.setText("CUANTO ANTES");
+        asapBtn.setText("RECOGER CUANTO ANTES");
         asapBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 asapBtnActionPerformed(evt);
             }
         });
         primerosInfPanel4.add(asapBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 720, 80));
+
+        jScrollPane4.setBorder(null);
+
+        jTextArea3.setBackground(new java.awt.Color(235, 250, 255));
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jTextArea3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea3.setLineWrap(true);
+        jTextArea3.setRows(2);
+        jTextArea3.setText(" El tiempo de preparación de un pedido es de 20 minutos y se puede pedir en cualquier momento dentro del horario de apertura de la cocina, de 12:00 a 16:00 y de 19:30 a 23:30.");
+        jTextArea3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane4.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout horarioPanelLayout = new javax.swing.GroupLayout(horarioPanel);
         horarioPanel.setLayout(horarioPanelLayout);
@@ -730,9 +762,10 @@ public class kiosco extends javax.swing.JFrame {
                     .addComponent(primerosInfPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
                     .addGroup(horarioPanelLayout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(primerosInfPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(primerosInfPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         horarioPanelLayout.setVerticalGroup(
@@ -744,11 +777,13 @@ public class kiosco extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
                 .addComponent(primerosInfPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153)
+                .addGap(104, 104, 104)
                 .addComponent(primerosInfPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         Body.add(horarioPanel, "card3");
@@ -2089,14 +2124,14 @@ public class kiosco extends javax.swing.JFrame {
         jPanel1.add(Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 80));
 
         Footer.setBackground(new java.awt.Color(196, 196, 196));
-        Footer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Footer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
 
         textoFooterBtn.setBackground(new java.awt.Color(196, 196, 196));
         textoFooterBtn.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         textoFooterBtn.setForeground(new java.awt.Color(0, 0, 0));
-        textoFooterBtn.setText("  Total del pedido");
+        textoFooterBtn.setText("Total:");
         textoFooterBtn.setBorder(null);
-        textoFooterBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        textoFooterBtn.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         textoFooterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoFooterBtnActionPerformed(evt);
@@ -2106,13 +2141,24 @@ public class kiosco extends javax.swing.JFrame {
         totalPedidoBtn.setBackground(new java.awt.Color(196, 196, 196));
         totalPedidoBtn.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         totalPedidoBtn.setForeground(new java.awt.Color(0, 0, 0));
-        totalPedidoBtn.setText("0€  ");
+        totalPedidoBtn.setText("0€");
         totalPedidoBtn.setBorder(null);
-        totalPedidoBtn.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         totalPedidoBtn.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         totalPedidoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalPedidoBtnActionPerformed(evt);
+            }
+        });
+
+        textoFooterBtn1.setBackground(new java.awt.Color(196, 196, 196));
+        textoFooterBtn1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        textoFooterBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        textoFooterBtn1.setText(" Finalizar pedido");
+        textoFooterBtn1.setBorder(null);
+        textoFooterBtn1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        textoFooterBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoFooterBtn1ActionPerformed(evt);
             }
         });
 
@@ -2121,17 +2167,22 @@ public class kiosco extends javax.swing.JFrame {
         FooterLayout.setHorizontalGroup(
             FooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FooterLayout.createSequentialGroup()
-                .addComponent(textoFooterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textoFooterBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalPedidoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+                .addComponent(textoFooterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalPedidoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
         );
         FooterLayout.setVerticalGroup(
             FooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FooterLayout.createSequentialGroup()
-                .addGroup(FooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(textoFooterBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(totalPedidoBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addComponent(totalPedidoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FooterLayout.createSequentialGroup()
+                .addGroup(FooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textoFooterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoFooterBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(Footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 900, 800, 80));
@@ -2304,10 +2355,10 @@ public class kiosco extends javax.swing.JFrame {
 
     private void confirmarMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMenuBtnActionPerformed
         // TODO add your handling code here:
-        System.out.println(this.menu.toString());
         this.pedido.anhadirElemento(new Menu(this.menu));
-        System.out.println(this.pedido.toString());
         this.actualizarTotales();
+        this.resetToggle();
+        this.menu = new Menu();
     }//GEN-LAST:event_confirmarMenuBtnActionPerformed
 
     private void confirmarPedidoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPedidoBtnActionPerformed
@@ -2388,6 +2439,8 @@ public class kiosco extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.pedido.anhadirElemento(new Menu(this.menuInf, false));
         this.actualizarTotales();
+        this.resetToggle();
+        this.menuInf = new Menu();
     }//GEN-LAST:event_confirmarMenuInfBtnActionPerformed
 
     private void nuggetsInfToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuggetsInfToggleActionPerformed
@@ -2449,6 +2502,8 @@ public class kiosco extends javax.swing.JFrame {
             this.pedido.anhadirElemento(elem);
         }
         this.actualizarTotales();
+        this.resetToggle();
+        this.productos = new ArrayList<>();
     }//GEN-LAST:event_confirmarPlatosBtnActionPerformed
 
     private void merluzaPlatosToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_merluzaPlatosToggleActionPerformed
@@ -2462,7 +2517,7 @@ public class kiosco extends javax.swing.JFrame {
 
     private void burguerPlatosToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burguerPlatosToggleActionPerformed
         // TODO add your handling code here:
-        if(this.burguerInfToggle.isSelected()){
+        if(this.burguerPlatosToggle.isSelected()){
             this.productos.add(new Producto("Hamburguesa", "Hamburguesa", 5, false, this.idioma));
         }else{
             this.productos.remove(new Producto("Hamburguesa", "Hamburguesa", 5, false, this.idioma));
@@ -2556,6 +2611,8 @@ public class kiosco extends javax.swing.JFrame {
             this.pedido.anhadirElemento(elem);
         }
         this.actualizarTotales();
+        this.resetToggle();
+        this.bebidas = new ArrayList<>();
     }//GEN-LAST:event_confirmarBebBtnActionPerformed
 
     private void burguerInfToggle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burguerInfToggle1ActionPerformed
@@ -2645,24 +2702,25 @@ public class kiosco extends javax.swing.JFrame {
             this.minPedido = 20;
             this.switchPanels(this.pagoPanel);
         }//Pedido entre servicios
-        else if (hour == 16 && min > 0 || hour > 16 && hour < 19 || hour == 19 && min < 30){
+        else if ((hour == 16 && min > 0) || (hour > 16 && hour < 19) || (hour == 19 && min < 30)){
             this.horaPedido = 19;
             this.minPedido = 50;
             this.switchPanels(this.pagoPanel);
         }//Primer servicio
-        else if (hour >= 12 && hour < 16 || hour == 16 && min == 0){
+        else if ((hour >= 12 && hour < 16) || (hour == 16 && min == 0)){
             array = this.calcularHora(hour, min);
             this.horaPedido = array[0];
             this.minPedido = array[1];
             this.switchPanels(this.pagoPanel);
         }//Segundo servicio
-        else if (hour == 19 && min > 29 || hour > 19 && hour < 23 || hour == 23 && min < 31){
+        else if ((hour == 19 && min > 29) || (hour > 19 && hour < 23) || (hour == 23 && min < 31)){
             array = this.calcularHora(hour, min);
             this.horaPedido = array[0];
             this.minPedido = array[1];
             this.switchPanels(this.pagoPanel);
         }
-        System.out.println("hola");
+            this.popUp = new VPopUp(this,"La hora de recogida será "+this.horaPedido+":"+this.minPedido, 4);
+            this.popUp.setVisible(true);
     }//GEN-LAST:event_asapBtnActionPerformed
 
     private void reservarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservarBtnActionPerformed
@@ -2673,21 +2731,24 @@ public class kiosco extends javax.swing.JFrame {
         int selectedMin = (Integer)this.minInput.getValue();
         int[] array = new int[2];
         //Si la hora escogida es menor a la actual
-        if(hour > selectedHour || hour == selectedHour && min > selectedMin){
-            
+        if(hour > selectedHour || (hour == selectedHour && min > selectedMin)){
+            this.popUp = new VPopUp(this,"La hora seleccionada no puede ser inferior a la hora actual", 4);
+            this.popUp.setVisible(true);
         }//Pedido antes del primer servicio
         else if(selectedHour >= 0 && selectedHour < 12 ){
-            
+            this.popUp = new VPopUp(this,"La hora seleccionada no se encuentra dentro del horario de recogida", 4);
+            this.popUp.setVisible(true);
         }//Pedido entre servicios
-        else if (selectedHour == 16 && selectedMin > 0 || selectedHour > 16 && hour < 19 || selectedHour == 19 && selectedMin < 30){
-            
+        else if ( (selectedHour == 16 && selectedMin > 0) || (selectedHour > 16 && selectedHour < 19) || (selectedHour == 19 && selectedMin < 30)){
+            this.popUp = new VPopUp(this,"La hora seleccionada no se encuentra dentro del horario de recogida", 4);
+            this.popUp.setVisible(true);
         }//Primer servicio
-        else if (selectedHour == 12 && selectedMin > 19 || selectedHour > 12 && selectedHour < 16 || selectedHour == 16 && selectedMin < 30){
+        else if ((selectedHour == 12 && selectedMin > 19) || (selectedHour > 12 && selectedHour < 16) || (selectedHour == 16 && selectedMin < 30)){
             this.horaPedido = selectedHour;
             this.minPedido = selectedMin;
             this.switchPanels(this.pagoPanel);
         }//Segundo servicio
-        else if (selectedHour == 19 && selectedMin > 49 || selectedHour > 19 && hour < 23 || selectedHour == 23 && selectedMin < 60){
+        else if ((selectedHour == 19 && selectedMin > 49) || (selectedHour > 19 && selectedHour < 23) || (selectedHour == 23 && selectedMin < 60)){
             this.horaPedido = selectedHour;
             this.minPedido = selectedMin;
             this.switchPanels(this.pagoPanel);
@@ -2696,13 +2757,13 @@ public class kiosco extends javax.swing.JFrame {
 
     private void enCajaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enCajaBtnActionPerformed
         // TODO add your handling code here:
-        this.popUp = new VPopUp(this,"Sigue las instrucciones en la pantalla del TPV", 0);
+        this.popUp = new VPopUp(this,"Acerquese a caja con el ticket", 0);
         this.popUp.setVisible(true);
     }//GEN-LAST:event_enCajaBtnActionPerformed
 
     private void tarjetaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarjetaBtnActionPerformed
         // TODO add your handling code here:
-        this.popUp = new VPopUp(this,"Acerquese a caja con el ticket", 0);
+        this.popUp = new VPopUp(this,"Sigue las instrucciones en la pantalla del TPV", 0);
         this.popUp.setVisible(true);
     }//GEN-LAST:event_tarjetaBtnActionPerformed
 
@@ -2735,6 +2796,17 @@ public class kiosco extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.switchPanels(this.idiomasPanel);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void textoFooterBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoFooterBtn1ActionPerformed
+        // TODO add your handling code here:
+        this.switchPanels(this.pedidosPanel);
+    }//GEN-LAST:event_textoFooterBtn1ActionPerformed
+
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        // TODO add your handling code here:
+        this.popUpPregunta = new VPopUpPregunta(this,"Esta acción borrará el pedido actual. Desea continuar?", 2,3);
+        this.popUpPregunta.setVisible(true);
+    }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private int[] calcularHora(int hora, int minuto){
         int[] array = new int[2];
@@ -2815,7 +2887,7 @@ public class kiosco extends javax.swing.JFrame {
     }
     
     public void actualizarTotales(){
-        this.totalPedidoBtn.setText(this.pedido.getTotal()+"€  ");
+        this.totalPedidoBtn.setText(this.pedido.getTotal()+"€");
         this.totalPagoLabel.setText(this.pedido.getTotal()+" €");
     }
     
@@ -2823,11 +2895,49 @@ public class kiosco extends javax.swing.JFrame {
         String toret = "HORARIO DE RECOGIDA --> "+this.horaPedido+":"+this.minPedido+"\n\n";
         toret += "PRODUCTOS\n";
         for(var elem : this.pedido.getProductos()){
-            toret += "-"+elem.nombreParaPedido+" --> "+elem.precio+" €\n";
+            toret += elem.cantidad+" x "+elem.nombreParaPedido+" --> "+elem.precio * elem.cantidad+" €\n";
         }
         toret += "\n\nTOTAL --> "+this.pedido.getTotal()+" €";
         return toret;
     }
+    
+    private void resetToggle(){
+        //bebidas
+            acuariusBebToggle.setSelected(false);
+            acuariusToggle.setSelected(false);
+            aguaBebToggle.setSelected(false);
+            aguaInfToggle.setSelected(false);
+            aguaToggle.setSelected(false);
+            cocaBebToggle.setSelected(false);
+            cocaInfToggle.setSelected(false);
+            cocaToggle.setSelected(false);
+            zumoBebToggle.setSelected(false);
+            zumoInfToggle.setSelected(false);
+            cerveza00BebToggle.setSelected(false);
+            cervezaBebToggle.setSelected(false);
+        
+            corderoPlatosToggle.setSelected(false);
+            filetePlatosToggle.setSelected(false);
+            fileteToggle.setSelected(false);
+            merluzaPlatosToggle.setSelected(false);
+            merluzaToggle.setSelected(false);
+            polloPlatosToggle.setSelected(false);
+            burguerInfToggle.setSelected(false);
+            burguerInfToggle1.setSelected(false);
+            burguerPlatosToggle.setSelected(false);
+            baconPlatosToggle.setSelected(false);
+            baconToggle.setSelected(false);
+            nuggetsInfToggle.setSelected(false);
+            croquetasInfToggle.setSelected(false);
+            espaguetisInfToggle.setSelected(false);
+            espaguetisInfToggle1.setSelected(false);
+            caldoToggle.setSelected(false);
+            caldoToggle1.setSelected(false);
+            ensaladaToggle.setSelected(false);
+            ensaladaToggle1.setSelected(false);
+            tortillaToggle.setSelected(false);
+            tortillaToggle1.setSelected(false);
+       }
     
     public void returnPopUp(int opcion){
         switch(opcion){
@@ -2838,17 +2948,31 @@ public class kiosco extends javax.swing.JFrame {
                 this.popUp = new VPopUp(this,getTicket(), 1);
                 this.popUp.setVisible(true);
                 this.pedido = new Pedido();
-                 this.tablaPedido.setFilas(this.pedido.getProductos());
+                this.tablaPedido.setFilas(this.pedido.getProductos());
                 this.actualizarTotales();
                 break;
             }
             case 1:{
+                break;
+            }
+            case 2:{
                 this.switchPanels(this.idiomasPanel);
                 this.Header.setVisible(false);
                 this.Footer.setVisible(false);
+                this.pedido = new Pedido();
+                this.tablaPedido.setFilas(this.pedido.getProductos());
+                this.actualizarTotales();
+                break;
+            }
+            case 3:{
+                break;
+            }
+            case 4:{
                 break;
             }
         }
+        
+        
     }
     
 
@@ -2882,6 +3006,7 @@ public class kiosco extends javax.swing.JFrame {
     private javax.swing.JToggleButton burguerPlatosToggle;
     private javax.swing.JToggleButton caldoToggle;
     private javax.swing.JToggleButton caldoToggle1;
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JToggleButton cerveza00BebToggle;
     private javax.swing.JLabel cerveza00BebidasLabel;
     private javax.swing.JToggleButton cervezaBebToggle;
@@ -2979,8 +3104,10 @@ public class kiosco extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTable mTablaPedidos;
     private javax.swing.JButton masBtn;
     private javax.swing.JButton menosBtn;
@@ -3016,6 +3143,7 @@ public class kiosco extends javax.swing.JFrame {
     private javax.swing.JPanel segundosPanel;
     private javax.swing.JButton tarjetaBtn;
     private javax.swing.JButton textoFooterBtn;
+    private javax.swing.JButton textoFooterBtn1;
     private javax.swing.JToggleButton tortillaToggle;
     private javax.swing.JToggleButton tortillaToggle1;
     private javax.swing.JLabel totalPagoLabel;

@@ -54,6 +54,7 @@ public class VPopUp extends javax.swing.JDialog {
         mensajeText.setColumns(20);
         mensajeText.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         mensajeText.setForeground(new java.awt.Color(0, 0, 0));
+        mensajeText.setLineWrap(true);
         mensajeText.setRows(5);
         jScrollPane1.setViewportView(mensajeText);
 
